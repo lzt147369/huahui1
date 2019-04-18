@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.admin.mapper.WReplyMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.xiaoshu.admin.entity.WReply">
+		<id column="id" property="id" />
+		<result column="wenid" property="wenid" />
+		<result column="userid" property="userid" />
+		<result column="huifu" property="huifu" />
+		<result column="shijian" property="shijian" />
+	</resultMap>
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, wenid, userid, huifu, shijian
+	</sql>
+
+
+	<select id="selectProductById" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT
+		w.id,
+		w.wenid,
+		w.userid,
+		w.huifu,
+		w.shijian
+
+		from
+		w_reply w
+		where
+		<if test="id != null and id != ''">
+			w.wenid = #{id}
+			ORDER BY
+			w.shijian DESC
+			LIMIT 1
+		</if>
+	</select>
+
+
+
+</mapper>

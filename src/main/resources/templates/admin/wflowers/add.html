@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta charset="utf-8">
+<title>添加花卉--后台管理</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" th:href="@{/static/layui/css/layui.css}"
+	media="all" />
+<link rel="stylesheet"
+	th:href="@{/static/ztree/css/zTreeStyle/zTreeStyle.css}"
+	type="text/css">
+<link rel="icon" type="image/x-icon"
+	href="/static/image/ico/favicon.ico">
+<style type="text/css">
+.layui-form-item .layui-inline {
+	width: 33.333%;
+	float: left;
+	margin-right: 0;
+}
+
+@media ( max-width :1240px) {
+	.layui-form-item .layui-inline {
+		width: 100%;
+		float: none;
+	}
+}
+
+.layui-form-item .role-box {
+	position: relative;
+}
+
+.layui-form-item .role-box .jq-role-inline {
+	height: 100%;
+	overflow: auto;
+}
+</style>
+</head>
+<body class="childrenBody">
+	<form class="layui-form" style="width:80%;margin-top: 2%;">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">花卉名称</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="name"
+						lay-verify="required" placeholder="请输入花卉名称">
+				</div>
+			</div>
+
+			<div class="layui-inline">
+				<label class="layui-form-label">花卉颜色</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="hue"
+						lay-verify="required" placeholder="请输入花卉颜色">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+
+			<div class="layui-inline">
+				<label class="layui-form-label">花卉成长周期</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="period"
+						lay-verify="required" placeholder="请输入花卉成长周期">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">浇水间隔</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="water"
+						lay-verify="required" placeholder="请输入浇水间隔">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+
+			<div class="layui-inline">
+				<label class="layui-form-label">阳光辐射</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="sun"
+						lay-verify="required" placeholder="请输入阳光辐射">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">修剪周期</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" name="trim"
+						lay-verify="required" placeholder="请输入修剪周期">
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+
+			<div class="layui-inline">
+				<label class="layui-form-label">品种类别</label>
+
+				<div class="layui-input-block">
+					<select name="classify" lay-verify="required">
+						<option value=""></option>
+						<option value="草本花卉">草本花卉</option>
+						<option value="木本花卉">木本花卉</option>
+						<option value="肉质类花卉">肉质类花卉</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-input-block">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<button type="button" class="layui-btn" id="test2">上传图片</button>
+			</div>
+			<div class="col-sm-6">
+				<div class="layui-upload-list">
+					<img class="layui-upload-img" id="demo1"
+						 style="width:280px;height:280px;">
+					<p id="demoText"></p>
+					<input name=url type="hidden" value="" />
+					<input name=tupianname type="hidden" value="" />
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit="" lay-filter="addUser">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+
+	</form>
+	<div style="display: none" id="allDepart">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+	<script type="text/javascript"
+		th:src="@{/static/ztree/js/jquery-1.4.4.min.js}"></script>
+	<script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/static/admin/js/wflowers/wflowersAdd.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/static/ztree/js/jquery.ztree.core-3.5.js}"></script>
+
+	<script>
+</script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8">
+    <title>首页--后台管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" th:href="@{/static/shouye/css/style.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/shouye/sousuo/css/zySearch.css}" media="all">
+    <script type="text/javascript" th:src="@{/static/shouye/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/shouye/sousuo/js/zySearch.js}"></script>
+    <script type="text/javascript" th:src="@{/static/shouye/js/jquery.SuperSlide.2.1.1.js}"></script>
+
+    <link rel="icon" type="image/x-icon" href="/static/image/ico/favicon.ico" >
+
+    <style>
+
+
+    </style>
+    <!--  <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+     <script src="http://webapi.amap.com/maps?v=1.3&key=d19985748ed6359fec0e5ebed166064e&plugin=AMap.Geocoder"></script>
+     <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script> -->
+</head>
+<body class="childrenBody">
+                <div style="">
+                    <span class="zySearch" id="zySearch" style="margin-top: 25px;margin-left: 600px"></span>
+                </div>
+
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="play">
+            <ul class="img_ul">
+
+            </ul>
+            <!--<a href="javascript:void(0)" class="prev_a change_a" title="上一张"><span></span></a>-->
+            <!--<a href="javascript:void(0)" class="next_a change_a" title="下一张"><span style="display:block;"></span></a>-->
+        </div>
+
+        <div class="img_hd">
+            <ul class="clearfix">
+
+            </ul>
+            <!--<a class="bottom_a prev_a" style="opacity:0.7;"></a>-->
+            <!--<a class="bottom_a next_a" style="opacity:0.7;"></a>-->
+        </div>
+
+        <script type="text/javascript">
+
+            $(function () {
+                $.ajax({
+                    type:"POST",
+                    url:"/admin/system/wflowers/list",
+                    dataType:"json",
+                    contentType:"application/json",
+                    success:function(res){
+
+                        var list = res.data;
+                        for (var i = 0;i<list.length;i++){
+
+                            if(i==0){
+
+                                $(".img_ul").append('<li style="display:block;"><a class="img_a"><img src="system/wflowers/' + list[i].tupianname + '"></a></li>');
+                            }else{
+
+                                $(".img_ul").append('<li><a class="img_a"><img src="system/wflowers/' + list[i].tupianname + '"></a></li>');
+                            }
+
+                        }
+                        for (var i = 0;i<list.length;i++){
+                            $(".clearfix").append('<li><a class="img_a"> <img src="system/wflowers/'+list[i].tupianname+'" onload="imgs_load(this)"></a></li>')
+                        }
+                        var i=0; //图片标识
+
+                        var img_num=$(".img_ul").children("li").length; //图片个数
+                        $(".img_ul li").hide(); //初始化图片
+                        play();
+                        $(function(){
+                            $(".img_hd ul").css("width",($(".img_hd ul li").outerWidth(true))*img_num); //设置ul的长度
+
+                            $(".bottom_a").css("opacity",0.7);	//初始化底部a透明度
+                            //$("#play").css("height",$("#play .img_ul").height());
+                            if (!window.XMLHttpRequest) {//对ie6设置a的位置
+                                $(".change_a").css("height",$(".change_a").parent().height());
+                            }
+
+                            $(".change_a").focus(function(){
+                                this.blur();
+                            });
+                            $(".bottom_a").hover(function(){//底部a经过事件
+                                $(this).css("opacity",1);
+                            },function(){
+                                $(this).css("opacity",0.7);
+                            });
+
+                            // $(".change_a").hover(function(){//箭头显示事件
+                            //     $(this).children("span").show();
+                            // },function(){
+                            //     $(this).children("span").hide();
+                            // });
+
+                            $(".img_hd ul li").click(function(){
+                                i=$(this).index();
+                                play();
+                            });
+
+                            $(".img_ul li").click(function(){
+                                location.href = "/admin/system/wflowers/wflowers";
+                            });
+
+                        });
+
+                        function play(){//动画移动
+                            var img=new Image(); //图片预加载
+                            img.onload=function(){
+                                img_load(img,$(".img_ul").children("li").eq(i).find("img"))
+                            };
+                            img.src=$(".img_ul").children("li").eq(i).find("img").attr("src");
+                            //$(".img_ul").children("li").eq(i).find("img").(img_load($(".img_ul").children("li").eq(i).find("img")));
+                            $(".img_hd ul").children("li").eq(i).addClass("on").siblings().removeClass("on");
+                            if(img_num>7){//大于7个的时候进行移动
+                                if(i<img_num-3){ //前3个
+                                    $(".img_hd ul").animate({"marginLeft":(-($(".img_hd ul li").outerWidth()+4)*(i-3<0?0:(i-3)))});
+                                }else if(i>=img_num-3){//后3个
+                                    $(".img_hd ul").animate({"marginLeft":(-($(".img_hd ul li").outerWidth()+4)*(img_num-7))});
+                                }
+                            }
+                            if(!window.XMLHttpRequest){//对ie6设置a的位置
+                                $(".change_a").css("height",$(".change_a").parent().height());
+                            }
+                        }
+
+                        function img_load(img_id,now_imgid){//大图片加载设置 （img_id 新建的img,now_imgid当前图片）
+                            if(img_id.width/img_id.height>1){
+                                if(img_id.width >=$("#play").width())
+                                    $(now_imgid).width($("#play").width());
+                            }else{
+                                if(img_id.height>=500) $(now_imgid).height(500);
+                            }
+                            $(".img_ul").children("li").eq(i).show().siblings("li").hide(); //大小确定后进行显示
+                        }
+
+                        function imgs_load(img_id){//小图片加载设置
+                            if(img_id.width >=$(".img_hd ul li").width()){img_id.width = 80};
+                            //if(img_id.height>=$(".img_hd ul li").height()) {img_id.height=$(".img_hd ul li").height();}
+                        }
+
+
+                    }
+                });
+            })
+
+
+
+
+
+
+
+            $("#zySearch").zySearch({
+                "width":"355",
+                "height":"33",
+                "parentClass":"pageTitle",
+                "callback":function(keyword){
+                    window.location.replace("/admin/system/wflowers/wflowers");
+                }
+            });
+        </script>
+
+</body>
+</html>

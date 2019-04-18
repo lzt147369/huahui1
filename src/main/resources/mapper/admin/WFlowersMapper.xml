@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.admin.mapper.WFlowersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xiaoshu.admin.entity.WFlowers">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="hue" property="hue" />
+        <result column="period" property="period" />
+        <result column="water" property="water" />
+        <result column="sun" property="sun" />
+        <result column="trim" property="trim" />
+        <result column="classify" property="classify" />
+        <result column="audit" property="audit" />
+        <result column="url" property="url" />
+        <result column="tupianname" property="tupianname" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, hue, period, water, sun, trim, classify, audit,url,tupianname
+    </sql>
+    
+    <select id="selectProductById" resultMap="BaseResultMap"  parameterType="java.lang.String">
+        SELECT
+        w.id,
+        w.name,
+        w.hue,
+        w.period,
+        w.water,
+        w.sun,
+        w.trim,
+        w.classify,
+        w.audit,
+        w.url,
+        w.tupianname
+        from
+        w_flowers w
+        where
+        <if test="id != null and id != ''">
+            w.id = #{id}
+        </if>
+    </select>
+
+</mapper>

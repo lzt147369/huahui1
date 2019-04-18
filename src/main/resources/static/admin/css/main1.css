@@ -1,0 +1,154 @@
+.box{
+	height: 809px;
+	width: 100%;
+	background: #dcdcf3;
+	padding-top: 53px;
+	box-sizing: border-box;
+}
+.box .container{
+	width: 1100px;
+	height: 600px;
+	/*background: blue;*/
+	margin: 0 auto;
+}
+.box .container .block{
+	width: 450px;
+	height: 250px;
+	/*background: yellow;*/
+	display: inline-block;
+	float: left;
+	position: relative;
+}
+.box .container .block .lianjie{
+	width: 450px;
+	height: 250px;
+	background: red;
+}
+.box .container .block .dibu{
+	width: 450px;
+	height:50px;
+	background: gray;
+	display: inline-block;
+	opacity: 0;
+	margin-top:200px;
+	transition: opacity 0.5s;
+}
+.box .container .block:hover .dibu{
+	opacity: 1;
+} 
+.box .container .block2 .dibu{
+	width: 450px;
+	height:50px;
+	background: gray;
+	display: inline-block;
+	opacity: 0;
+	margin-top:200px;
+	transition: opacity 0.5s;
+}
+.box .container .block2:hover .dibu{
+	opacity: 1;
+} .box .container .block3 .dibu{
+	width: 450px;
+	height:50px;
+	background: gray;
+	display: inline-block;
+	opacity: 0;
+	margin-top:200px;
+	transition: opacity 0.5s;
+}
+.box .container .block3:hover .dibu{
+	opacity: 1;
+} .box .container .block4 .dibu{
+	width: 450px;
+	height:50px;
+	background: gray;
+	display: inline-block;
+	opacity: 0;
+	margin-top:200px;
+	transition: opacity 0.5s;
+}
+.box .container .block4:hover .dibu{
+	opacity: 1;
+} 
+.box .container .dibu p{
+	font-size: 24px;
+	line-height: 50px;
+	text-align: center;
+	color: #400040;
+}
+.box .container .block2{
+	width: 450px;
+	height: 250px;
+	display: inline-block;
+	/*background: yellow;*/
+	float: right;
+	position: relative;
+}
+.box .container .block2 .lianjie{
+	width: 450px;
+	height: 250px;
+	background: red;
+}
+.box .container .block3{
+	width: 450px;
+	height: 250px;
+	display: inline-block;
+	/*background: yellow;*/
+	margin-top: 96px;
+	position: relative;
+}
+.box .container .block3 .lianjie{
+	width: 450px;
+	height: 250px;
+	background: red;
+}
+.box .container .block4{
+	width: 450px;
+	height: 250px;
+	display: inline-block;
+	float: right;
+	margin-top: 96px;
+	/*background: yellow;*/
+	position: relative;
+}
+.box .container .block4 .lianjie{
+	width: 450px;
+	height: 250px;
+	background: red;
+}
+.box .container .block .lianjie{
+	box-shadow:  0px 15px 1px -10px #d3d3d3 ,  0px 25px 1px -15px #eaeaea;
+	transition: bottom 0.5s;
+	bottom: 0;
+	position: relative;
+}
+.box .container .block:hover  .lianjie {
+	bottom: 8px;
+}
+.box .container .block2 .lianjie{
+	box-shadow:  0px 15px 1px -10px #d3d3d3 ,  0px 25px 1px -15px #eaeaea;
+	transition: bottom 0.5s;
+	bottom: 0;
+	position: relative;
+}
+.box .container .block2:hover  .lianjie {
+	bottom: 8px;
+}
+.box .container .block3 .lianjie{
+	box-shadow:  0px 15px 1px -10px #d3d3d3 ,  0px 25px 1px -15px #eaeaea;
+	transition: bottom 0.5s;
+	bottom: 0;
+	position: relative;
+}
+.box .container .block3:hover  .lianjie {
+	bottom: 8px;
+}
+.box .container .block4 .lianjie{
+	box-shadow:  0px 15px 1px -10px #d3d3d3 ,  0px 25px 1px -15px #eaeaea;
+	transition: bottom 0.5s;
+	bottom: 0;
+	position: relative;
+}
+.box .container .block4:hover  .lianjie {
+	bottom: 8px;
+}

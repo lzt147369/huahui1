@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.admin.mapper.WArticleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xiaoshu.admin.entity.WArticle">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="writer" property="writer" />
+        <result column="content" property="content" />
+        <result column="time" property="time" />
+        <result column="status" property="status" />
+        <result column="url" property="url" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, writer, content, time, status, url, name
+    </sql>
+
+    <select id="selectProductById" resultMap="BaseResultMap"  parameterType="java.lang.String">
+        SELECT
+        w.id,
+        w.title,
+        w.writer,
+        w.content,
+        w.time,
+        w.status,
+        w.url,
+        w.name
+
+        from
+        w_article w
+        where
+        <if test="id != null and id != ''">
+            w.id = #{id}
+        </if>
+    </select>
+
+</mapper>
